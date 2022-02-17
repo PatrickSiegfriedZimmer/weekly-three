@@ -1,63 +1,53 @@
+class ToDo {
+  constructor(text, isDone) {
+    this.text = text;
+    this.isDone = isDone;
+  }
+}
+
 const btnAdd = document.querySelector('#btnAdd');
 const inputItem = document.querySelector('#inputItem');
 const todolist = document.querySelector('#todolist');
 
+let todos = [
+  new ToDo('mit hund laufen gehen', false),
+  new ToDo('putzen', false)
+];
+
 const updateView = () => {
-  // Remove all (old) list items
+  todolist.innerHTML = "";
 
-  // Create new list items
-  todos.forEach((item) => {
-    // Create list item
-    let listItem = todolist.createElement('li');
+  todos.forEach((t) => {
+    let listItem = document.createElement('li');
+    listItem.innerHTML = t.text;
 
-    // Add list item to DOM
-    listItem.appendChild(todolist);
+    todolist.appendChild(listItem);
   });
 };
 
-// Array of todo items
-let todos = [
-  ['mit hund laufen gehen', false],
-  ['putzen', false]
-];
-
-// Eventlisteners
 btnAdd.addEventListener('click', () => {
-  addTodo('lorem ipsum');
-  console.log(todos);
+  addTodo(inputItem.value);
+  logTodos();
 });
 
-// ToDo hinzufügen:
 function addTodo(todoLabel) {
-  todos.push([todoLabel, false]);
+  todos.push(new ToDo(todoLabel, false));
+  updateView();
 }
 
-//  als erledigt markieren:
 function markAsDone(index) {
   const todo = todos[index];
   todo[1] = true;
 }
-
-/**
- * Ein Todo bearbeiten
- */
 
 function editToDo(index, editedToDo) {
   const todo = todos[index];
   todo[0] = editedToDo;
 }
 
-/**
- * Ein Todo loeschen
- */
-
 function deleteTodo(index) {
   todos.splice(index, 1);
 }
-
-/**
- * Actions
- */
 
 logTodos();
 
@@ -81,7 +71,7 @@ logTodos();
 function logTodos() {
   console.log(`====== Todos ======`);
   todos.forEach((todo, index) => {
-    console.log(`${index}: ${todo[0]} | ${todo[1]}`);
+    console.log(`${index}: ${todo.text}, ${todo.isDone}`);
   });
 }
 
