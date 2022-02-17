@@ -62,5 +62,6 @@ header {
 
 li {
   padding: 1.2rem;
-  background-color: blue;
+  text-align: center;
+  list-style: none;
 }

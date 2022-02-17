@@ -52,21 +52,21 @@ function deleteTodo(index) {
 logTodos();
 
 // Add
-addTodo('lebensmittel einkaufen');
-addTodo('ein buch lesen');
-logTodos();
+// addTodo('lebensmittel einkaufen');
+// addTodo('ein buch lesen');
+// logTodos();
 
 // Delete
-deleteTodo(1);
-logTodos();
+// deleteTodo(1);
+// logTodos();
 
 // Edit
-editToDo(2, 'die Katze füttern');
-logTodos();
+// editToDo(2, 'die Katze füttern');
+// logTodos();
 
 // Mark as done
-markAsDone(0);
-logTodos();
+// markAsDone(0);
+// logTodos();
 
 function logTodos() {
   console.log(`====== Todos ======`);
