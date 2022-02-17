@@ -14,12 +14,53 @@ let todos = [
   new ToDo('putzen', false)
 ];
 
+const aufgabeErledigen = (e) => {
+  if (e.target.name === 'erledigtCheckbox') {
+    const p = e.target.parentNode.children[1];
+    if (p.style.textDecoration === 'line-through') {
+      p.style.textDecoration = '';
+    } else {
+      p.style.textDecoration = 'line-through';
+    }
+  }
+};
+
+todolist.addEventListener('click', (event) => {
+  const li = event.target.parentNode;
+  const index = Array.from(todolist.children).indexOf(li);
+  if (event.target.classList.contains('btnDelete')) {
+    // Delete button was clicked on index
+    deleteTodo(index);
+  }
+  if (event.target.classList.contains('btnEdit')) {
+    // Edit button was clicked on edit
+  }
+
+  updateView();
+});
+
+todolist.addEventListener('change', (event) => {
+  const li = event.target.parentNode;
+  const index = Array.from(todolist.children).indexOf(li);
+  if (event.target.classList.contains('checkbox')) {
+    // Checkbox was changed
+    // todos[index].isDone = event.target.checked;
+  }
+
+  updateView();
+});
+
 const updateView = () => {
-  todolist.innerHTML = "";
+  todolist.innerHTML = '';
 
   todos.forEach((t) => {
     let listItem = document.createElement('li');
-    listItem.innerHTML = t.text;
+    listItem.innerHTML = `
+    <input type="checkbox" class="checkbox">
+    <p class="todoText">${t.text}</p>                   
+    <button class="btnEdit small"><i class="fa-solid fa-pencil"></i></button>
+    <button class="btnDelete small"><i class="fa-solid fa-trash"></i></button>
+    `;
 
     todolist.appendChild(listItem);
   });
@@ -27,7 +68,7 @@ const updateView = () => {
 
 btnAdd.addEventListener('click', () => {
   addTodo(inputItem.value);
-  inputItem.value = "";
+  inputItem.value = '';
   logTodos();
 });
 
@@ -38,12 +79,12 @@ function addTodo(todoLabel) {
 
 function markAsDone(index) {
   const todo = todos[index];
-  todo[1] = true;
+  todo.isDone = true;
 }
 
 function editToDo(index, editedToDo) {
   const todo = todos[index];
-  todo[0] = editedToDo;
+  todo.isDone = editedToDo;
 }
 
 function deleteTodo(index) {

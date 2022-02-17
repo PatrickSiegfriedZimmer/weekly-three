@@ -22,6 +22,10 @@ header {
   margin: 0 auto;
 }
 
+i {
+  pointer-events: none !important;
+}
+
 /* Button */
 
 .btn {
@@ -44,6 +48,16 @@ header {
   transition: background-color 0.3s;
 }
 
+.small {
+  width: 2rem;
+  height: auto;
+  margin: 0.5rem 0.65rem;
+  background-color: white;
+}
+
+.checkbox {
+  margin: 0.5rem;
+}
 /* Controls */
 
 #inputItem {
@@ -61,7 +75,25 @@ header {
 /* List Items */
 
 li {
+  display: flex;
+  justify-content: space-between;
   padding: 1.2rem;
   text-align: center;
   list-style: none;
+  margin: 1rem 0rem;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  max-width: 24rem;
+  height: auto;
+}
+
+ul {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todoText{
+  padding: 0.25;
+  align-self: center;
 }
