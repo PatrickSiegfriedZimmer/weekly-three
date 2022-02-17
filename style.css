@@ -44,6 +44,8 @@ header {
   transition: background-color 0.3s;
 }
 
+/* Controls */
+
 #inputItem {
   padding: 0.8rem;
   border-radius: 5px;
@@ -54,4 +56,11 @@ header {
 #inputItem:focus {
   outline: none !important;
   border: 2px double black;
+}
+
+/* List Items */
+
+li {
+  padding: 1.2rem;
+  background-color: red;
 }
