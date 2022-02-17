@@ -27,6 +27,7 @@ const updateView = () => {
 
 btnAdd.addEventListener('click', () => {
   addTodo(inputItem.value);
+  inputItem.value = "";
   logTodos();
 });
 
@@ -50,6 +51,7 @@ function deleteTodo(index) {
 }
 
 logTodos();
+updateView();
 
 // Add
 // addTodo('lebensmittel einkaufen');
