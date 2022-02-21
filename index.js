@@ -14,29 +14,31 @@ let todos = [
   new ToDo('putzen', false)
 ];
 
-const aufgabeErledigen = (e) => {
-  if (e.target.name === 'erledigtCheckbox') {
-    const p = e.target.parentNode.children[1];
-    if (p.style.textDecoration === 'line-through') {
-      p.style.textDecoration = '';
-    } else {
-      p.style.textDecoration = 'line-through';
-    }
-  }
-};
+// const aufgabeErledigen = (e) => {
+//   if (e.target.name === 'erledigtCheckbox') {
+//     const p = e.target.parentNode.children[1];
+//     if (p.style.textDecoration === 'line-through') {
+//       p.style.textDecoration = '';
+//     } else {
+//       p.style.textDecoration = 'line-through';
+//     }
+//   }
+// };
 
 todolist.addEventListener('click', (event) => {
   const li = event.target.parentNode;
   const index = Array.from(todolist.children).indexOf(li);
+  
   if (event.target.classList.contains('btnDelete')) {
     // Delete button was clicked on index
     deleteTodo(index);
+    updateView();
   }
   if (event.target.classList.contains('btnEdit')) {
     // Edit button was clicked on edit
-  }
 
-  updateView();
+    updateView();
+  }
 });
 
 todolist.addEventListener('change', (event) => {
@@ -44,19 +46,21 @@ todolist.addEventListener('change', (event) => {
   const index = Array.from(todolist.children).indexOf(li);
   if (event.target.classList.contains('checkbox')) {
     // Checkbox was changed
-    // todos[index].isDone = event.target.checked;
+    console.log('Checkbox was changed!');
+    todos[index].isDone = event.target.checked;
   }
 
   updateView();
 });
 
 const updateView = () => {
+  console.log("=== UPDATE VIEW ===")
   todolist.innerHTML = '';
 
   todos.forEach((t) => {
     let listItem = document.createElement('li');
     listItem.innerHTML = `
-    <input type="checkbox" class="checkbox">
+    <input type="checkbox" class="checkbox" ${t.isDone ? 'checked' : ''}>
     <p class="todoText">${t.text}</p>                   
     <button class="btnEdit small"><i class="fa-solid fa-pencil"></i></button>
     <button class="btnDelete small"><i class="fa-solid fa-trash"></i></button>
