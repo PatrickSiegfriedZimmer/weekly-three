@@ -14,16 +14,13 @@ let todos = [
   new ToDo('putzen', false)
 ];
 
-// const aufgabeErledigen = (e) => {
-//   if (e.target.name === 'erledigtCheckbox') {
-//     const p = e.target.parentNode.children[1];
-//     if (p.style.textDecoration === 'line-through') {
-//       p.style.textDecoration = '';
-//     } else {
-//       p.style.textDecoration = 'line-through';
-//     }
-//   }
-// };
+// --EventListener--
+
+btnAdd.addEventListener('click', () => {
+  addTodo(inputItem.value);
+  inputItem.value = '';
+  logTodos();
+});
 
 todolist.addEventListener('click', (event) => {
   const li = event.target.parentNode;
@@ -53,6 +50,8 @@ todolist.addEventListener('change', (event) => {
   updateView();
 });
 
+
+// --Functions--
 const updateView = () => {
   console.log('=== UPDATE VIEW ===');
   todolist.innerHTML = '';
@@ -70,11 +69,6 @@ const updateView = () => {
   });
 };
 
-btnAdd.addEventListener('click', () => {
-  addTodo(inputItem.value);
-  inputItem.value = '';
-  logTodos();
-});
 
 function addTodo(todoLabel) {
   todos.push(new ToDo(todoLabel, false));
@@ -94,6 +88,8 @@ function editToDo(index, editedToDo) {
 function deleteTodo(index) {
   todos.splice(index, 1);
 }
+
+// --Helpers | Actions--
 
 logTodos();
 updateView();
