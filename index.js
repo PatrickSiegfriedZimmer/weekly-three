@@ -28,7 +28,7 @@ let todos = [
 todolist.addEventListener('click', (event) => {
   const li = event.target.parentNode;
   const index = Array.from(todolist.children).indexOf(li);
-  
+
   if (event.target.classList.contains('btnDelete')) {
     // Delete button was clicked on index
     deleteTodo(index);
@@ -54,14 +54,14 @@ todolist.addEventListener('change', (event) => {
 });
 
 const updateView = () => {
-  console.log("=== UPDATE VIEW ===")
+  console.log('=== UPDATE VIEW ===');
   todolist.innerHTML = '';
 
   todos.forEach((t) => {
     let listItem = document.createElement('li');
     listItem.innerHTML = `
     <input type="checkbox" class="checkbox" ${t.isDone ? 'checked' : ''}>
-    <p class="todoText">${t.text}</p>                   
+    <p class="todoText ${t.isDone? 'strikethrough' : ''}">${t.text}</p>                   
     <button class="btnEdit small"><i class="fa-solid fa-pencil"></i></button>
     <button class="btnDelete small"><i class="fa-solid fa-trash"></i></button>
     `;

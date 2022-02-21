@@ -26,6 +26,10 @@ i {
   pointer-events: none !important;
 }
 
+.strikethrough {
+  text-decoration: line-through;
+}
+
 /* Button */
 
 .btn {
