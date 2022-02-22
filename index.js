@@ -50,6 +50,12 @@ todolist.addEventListener('change', (event) => {
   updateView();
 });
 
+todolist.addEventListener('input', (event => {
+  const li = event.target.parentNode;
+  const index = Array.from(todolist.children).indexOf(li);
+  todos[index].text = event.target.innerHTML;
+}));
+
 
 // --Functions--
 const updateView = () => {
@@ -60,7 +66,7 @@ const updateView = () => {
     let listItem = document.createElement('li');
     listItem.innerHTML = `
     <input type="checkbox" class="checkbox" ${t.isDone ? 'checked' : ''}>
-    <p class="todoText ${t.isDone? 'strikethrough' : ''}">${t.text}</p>                   
+    <p class="todoText" contenteditable="true" ${t.isDone? 'strikethrough' : ''}">${t.text}</p>                   
     <button class="btnEdit small"><i class="fa-solid fa-pencil"></i></button>
     <button class="btnDelete small"><i class="fa-solid fa-trash"></i></button>
     `;
